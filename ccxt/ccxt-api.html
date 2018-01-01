@@ -1,0 +1,61 @@
+<!-- Bittrex: API -->
+<script type="text/x-red" data-template-name="ccxt-api">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa"></i>Name</label>
+    <input type="text" id="node-input-name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-apikey"><i class="fa"></i>ApiKey</label>
+    <input type="text" id="node-input-apikey" placeholder="Bittrex ApiKey">
+  </div>
+  <div class="form-row">
+    <label for="node-input-apisecret"><i class="fa"></i>Secret ApiKey</label>
+    <input type="text" id="node-input-apisecret" placeholder="Bittrex Secret ApiKey">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="ccxt-api">
+  <p>ccxt API</p>
+  <h3>Inputs</h3>
+  <dl class="message-properties">
+    <dt>ApiKey<span class="property-type">Bittrex ApiKey</span></dt>
+    <dt>Secret ApiKey<span class="property-type">Bittrex Secret ApiKey</span></dt>
+  <
+  <h3>Outputs</h3>
+  <dl class="message-properties">
+     <dt>payload<span class="property-type">object</span></dt>
+     <dd>The payload result object.
+        <p>Object Format:</p>
+        <ul>
+           <li>begIndex: beg index</li>
+           <li>nbElement: number of elements</li>
+           <li>result.outReal: result collection</li>
+         </ul>
+     </dd>
+  </dl>
+  <h3>Error</h3>
+  <dl class="message-properties">
+     <dt>error<span class="property-type">string</span></dt>
+     <dd>The error string.</dd>
+  </dl>
+  <h3>Details</h3>
+  <p>Bittrex API</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType("ccxt-api",{
+        category:'Traiding',
+        defaults: {
+            name: {value: ''},
+            apikey: {value: ''},
+            apisecret: {value: ''}
+        },
+        outputs: 1,
+        inputs: 1,
+        label: function() {
+            return this.name || "ccxt API";
+        },
+        color: '#D8BFD8',
+        icon: 'bitcoin-symbol.png'
+    });
+</script>
