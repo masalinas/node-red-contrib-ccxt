@@ -16,14 +16,22 @@ module.exports = function(RED) {
         // execute Bittrex API
         node.on('input', function (msg) {
             const asyncInput = async function async(config) {
-                let kraken = new ccxt.kraken();
+                try {
+                    // connect to exchange selected
+                    let exchange = new ccxt[config.exchange] ();
 
-                let markers = await kraken.loadMarkets();
+                    let markers = await exchange.loadMarkets();
 
-                msg.payload = markers;
+                    msg.payload = markers;
 
-                node.send(msg);
-            }
+                    node.send(msg);
+                } catch(err) {
+                    node.status({fill:"red", shape: "ring", text: "ccxt error"});
+                    node.error("ccxt error", err);
+
+                    return;
+                }
+            };
 
             asyncInput.apply(this, [config]);
         });

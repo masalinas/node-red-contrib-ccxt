@@ -5,6 +5,105 @@
     <input type="text" id="node-input-name">
   </div>
   <div class="form-row">
+    <label for="node-input-exchange"><i class="fa "></i>Exchange</label>
+    <select type="text" id="node-input-exchange">
+      <option value="_1broker">1Broker</option>
+      <option value="_1btcxe">1BTCXE</option>
+      <option value="acx">ACX</option>
+      <option value="allcoin">Allcoin</option>
+      <option value="anxpro">ANXPro</option>
+      <option value="binance">Binance</option>
+      <option value="bit2c">Bit2C</option>
+      <option value="bitbay">BitBay</option>
+      <option value="bitcoincoid">Bitcoin.co.id</option>
+      <option value="bitfinex">Bitfinex</option>
+      <option value="bitfinex2">Bitfinex v2</option>
+      <option value="bitflyer">bitFlyer</option>
+      <option value="bithumb">Bithumb</option>
+      <option value="bitlish">Bitlish</option>
+      <option value="bitmarket">BitMarket</option>
+      <option value="bitmex">BitMEX</option>
+      <option value="bitso">Bitso</option>
+      <option value="bitstamp1">Bitstamp v1</option>
+      <option value="bitstamp">Bitstamp</option>
+      <option value="bittrex">Bittrex</option>
+      <option value="bl3p">BL3P</option>
+      <option value="bleutrade">Bleutrade</option>
+      <option value="btcbox">BtcBox</option>
+      <option value="btcchina">BTCChina</option>
+      <option value="btcexchange">BTCExchange</option>
+      <option value="btcmarkets">BTC Markets</option>
+      <option value="btctradeua">BTC Trade UA</option>
+      <option value="btcturk">BTCTurk</option>
+      <option value="btcx">BTCX</option>
+      <option value="bter">Bter</option>
+      <option value="bxinth">BX.in.th</option>
+      <option value="ccex">C-CEX</option>
+      <option value="cex">CEX.IO</option>
+      <option value="chbtc">CHBTC</option>
+      <option value="chilebit">ChileBit</option>
+      <option value="coincheck">coincheck</option>
+      <option value="coinfloor">coinfloor</option>
+      <option value="coingi">Coingi</option>
+      <option value="coinmarketcap">CoinMarketCap</option>
+      <option value="coinmate">CoinMate</option>
+      <option value="coinsecure">Coinsecure</option>
+      <option value="coinspot">CoinSpot</option>
+      <option value="cryptopia">Cryptopia</option>
+      <option value="dsx">DSX</option>
+      <option value="exmo">EXMO</option>
+      <option value="flowbtc">flowBTC</option>
+      <option value="foxbit">FoxBit</option>
+      <option value="fybse">FYB-SE</option>
+      <option value="fybsg">FYB-SG</option>
+      <option value="gatecoin">Gatecoin</option>
+      <option value="gateio">Gate.io</option>
+      <option value="gdax">GDAX</option>
+      <option value="gemini">Gemini</option>
+      <option value="getbtc">GetBTC</option>
+      <option value="hitbtc">HitBTC</option>
+      <option value="hitbtc2">HitBTC v2</option>
+      <option value="huobi">Huobi</option>
+      <option value="huobicny">Huobi CNY</option>
+      <option value="huobipro">Huobi Pro</option>
+      <option value="independentreserve">Independent Reserve</option>
+      <option value="itbit">itBit</option>
+      <option value="jubi">jubi.com</option>
+      <option value="kraken">Kraken</option>
+      <option value="kucoin">Kucoin</option>
+      <option value="kuna">Kuna</option>
+      <option value="lakebtc">LakeBTC</option>
+      <option value="liqui">Liqui</option>
+      <option value="livecoin">LiveCoin</option>
+      <option value="luno">luno</option>
+      <option value="mercado">Mercado Bitcoin</option>
+      <option value="mixcoins">MixCoins</option>
+      <option value="nova">Novaexchange</option>
+      <option value="okcoincny">OKCoin CNY</option>
+      <option value="okcoinusd">OKCoin USD</option>
+      <option value="okex">OKEX</option>
+      <option value="paymium">Paymium</option>
+      <option value="poloniex">Poloniex</option>
+      <option value="qryptos">QRYPTOS</option>
+      <option value="quadrigacx">QuadrigaCX</option>
+      <option value="quoine">QUOINE</option>
+      <option value="southxchange">SouthXchange</option>
+      <option value="surbitcoin">SurBitcoin</option>
+      <option value="therock">TheRockTrading</option>
+      <option value="tidex">Tidex</option>
+      <option value="urdubit">UrduBit</option>
+      <option value="vaultoro">Vaultoro</option>
+      <option value="vbtc">VBTC</option>
+      <option value="virwox">VirWoX</option>
+      <option value="wex">WEX</option>
+      <option value="xbtce">xBTCe</option>
+      <option value="yobit">YoBit</option>
+      <option value="yunbi">YUNBI</option>
+      <option value="zaif">Zaif</option>
+      <option value="zb">ZB</option>
+    </select>
+  </div>
+  <div class="form-row">
     <label for="node-input-apikey"><i class="fa"></i>ApiKey</label>
     <input type="text" id="node-input-apikey" placeholder="Bittrex ApiKey">
   </div>
@@ -18,9 +117,769 @@
   <p>ccxt API</p>
   <h3>Inputs</h3>
   <dl class="message-properties">
-    <dt>ApiKey<span class="property-type">Bittrex ApiKey</span></dt>
-    <dt>Secret ApiKey<span class="property-type">Bittrex Secret ApiKey</span></dt>
-  <
+     <dt>Exchange<span class="property-type">string</span></dt>
+     <dd>The Exchange list:
+        <p><b>1Broker</b></p>
+        <ul>
+            <li>Id: _1broker</li>
+            <li>Link: <a href="https://1broker.com" target="_blank">1Broker</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://1broker.com/?c=en/content/api-documentation" target="_blank">API</a></li>
+            <li>Country: US</li>
+        </ul>
+        <p><b>1BTCXE</b></p>
+        <ul>
+            <li>Id: _1btcxe</li>
+            <li><a href="https://1btcxe.com" target="_blank">1BTCXE</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://1btcxe.com/api-docs.php" target="_blank">API</a></li>
+            <li>Country: Panama</li>
+        </ul>
+        <p><b>ACX</b></p>
+        <ul>
+            <li>Id: acx</li>
+            <li><a href="https://acx.io" target="_blank">ACX</a></li>
+            <li>Version: 2</li>
+            <li>Doc: <a href="https://acx.io/documents/api_v2" target="_blank">API</a></li>
+            <li>Country: Australia</li>
+        </ul>
+        <p><b>Allcoin</b></p>
+        <ul>
+            <li>Id: allcoin</li>
+            <li><a href="https://www.allcoin.com" target="_blank">Allcoin</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://www.allcoin.com/About/APIReference" target="_blank">API</a></li>
+            <li>Country: Canada</li>
+        </ul>
+        <p><b>ANXPro</b></p>
+        <ul>
+            <li>Id: anxpro</li>
+            <li><a href="https://anxpro.com" target="_blank">ANXPro</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="http://docs.anxv2.apiary.io" target="_blank">API</a></li>
+            <li>Country: Japan, Singapore, Hong Kong, New Zealand</li>
+        </ul>
+        <p><b>Binance</b></p>
+        <ul>
+            <li>Id: binance</li>
+            <li><a href="https://www.binance.com" target="_blank">Binance</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://github.com/binance-exchange/binance-official-api-docs/blob/master/rest-api.md" target="_blank">API</a></li>
+            <li>Country: China</li>
+        </ul>
+        <p><b>Bit2C</b></p>
+        <ul>
+            <li>Id: bit2c</li>
+            <li><a href="https://www.binance.com" target="_blank">Bit2C</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://www.bit2c.co.il/home/api" target="_blank">API</a></li>
+            <li>Country: Israel</li>
+        </ul>
+        <p><b>BitBay</b></p>
+        <ul>
+            <li>Id: bitbay</li>
+            <li><a href="https://bitbay.net" target="_blank">BitBay</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://bitbay.net/public-api" target="_blank">API</a></li>
+            <li>Country: Poland, EU</li>
+        </ul>
+        <p><b>Bitcoin.co.id</b></p>
+        <ul>
+            <li>Id: bitcoincoid</li>
+            <li><a href="https://www.bitcoin.co.id" target="_blank">Bitcoin.co.id</a></li>
+            <li>Version: 1.7</li>
+            <li>Doc: <a href="https://vip.bitcoin.co.id/downloads/BITCOINCOID-API-DOCUMENTATION.pdf" target="_blank">API</a></li>
+            <li>Country: Indonesia</li>
+        </ul>
+        <p><b>Bitfinex</b></p>
+        <ul>
+            <li>Id: bitfinex</li>
+            <li><a href="https://www.bitfinex.com" target="_blank">Bitfinex</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://bitfinex.readme.io/v1/docs" target="_blank">API</a></li>
+            <li>Country: British Virgin Islands</li>
+        </ul>
+        <p><b>Bitfinex v2</b></p>
+        <ul>
+            <li>Id: bitfinex2</li>
+            <li><a href="https://www.bitfinex.com" target="_blank">Bitfinex v2</a></li>
+            <li>Version: 2</li>
+            <li>Doc: <a href="https://bitfinex.readme.io/v2/docs" target="_blank">API</a></li>
+            <li>Country: British Virgin Islands</li>
+        </ul>
+        <p><b>bitFlyer</b></p>
+        <ul>
+            <li>Id: bitflyer</li>
+            <li><a href="https://bitflyer.jp" target="_blank">bitFlyer</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://bitflyer.jp/API" target="_blank">API</a></li>
+            <li>Country: Japan</li>
+        </ul>
+        <p><b>Bithumb</b></p>
+        <ul>
+            <li>Id: bithumb</li>
+            <li><a href="https://www.bithumb.com" target="_blank">Bithumb</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://www.bithumb.com/u1/US127" target="_blank">API</a></li>
+            <li>Country: South Korea</li>
+        </ul>
+        <p><b>Bitlish</b></p>
+        <ul>
+            <li>Id: bitlish</li>
+            <li><a href="https://bitlish.com" target="_blank">Bitlish</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://bitlish.com/api" target="_blank">API</a></li>
+            <li>Country: UK, EU, Russia</li>
+        </ul>
+        <p><b>BitMarket</b></p>
+        <ul>
+            <li>Id: bitmarket</li>
+            <li><a href="https://www.bitmarket.pl" target="_blank">BitMarket</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://www.bitmarket.net/docs.php?file=api_public.html" target="_blank">API</a></li>
+            <li>Country: Poland, EU</li>
+        </ul>
+        <p><b>BitMEX</b></p>
+        <ul>
+            <li>Id: bitmex</li>
+            <li><a href="https://www.bitmex.com" target="_blank">BitMEX</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://www.bitmex.com/app/apiOverview" target="_blank">API</a></li>
+            <li>Country: Seychelles</li>
+        </ul>
+        <p><b>Bitso</b></p>
+        <ul>
+            <li>Id: bitso</li>
+            <li><a href="https://bitso.com" target="_blank">Bitso</a></li>
+            <li>Version: 3</li>
+            <li>Doc: <a href="https://bitso.com/api_info" target="_blank">API</a></li>
+            <li>Country: Mexico</li>
+        </ul>
+        <p><b>Bitstamp v1</b></p>
+        <ul>
+            <li>Id: bitstamp</li>
+            <li><a href="https://www.bitstamp.net" target="_blank">Bitstamp v1</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://www.bitstamp.net/api" target="_blank">API</a></li>
+            <li>Country: UK</li>
+        </ul>
+        <p><b>Bitstamp</b></p>
+        <ul>
+            <li>Id: bitstamp</li>
+            <li><a href="https://www.bitstamp.net" target="_blank">Bitstamp</a></li>
+            <li>Version: 2</li>
+            <li>Doc: <a href="https://www.bitstamp.net/api" target="_blank">API</a></li>
+            <li>Country: UK</li>
+        </ul>
+        <p><b>Bittrex</b></p>
+        <ul>
+            <li>Id: bittrex</li>
+            <li><a href="https://bittrex.com" target="_blank">Bittrex</a></li>
+            <li>Version: 1.1</li>
+            <li>Doc: <a href="https://bittrex.com/Home/Api" target="_blank">API</a></li>
+            <li>Country: US</li>
+        </ul>
+        <p><b>BL3P</b></p>
+        <ul>
+            <li>Id: bl3p</li>
+            <li><a href="https://bl3p.eu" target="_blank">BL3P</a></li>
+            <li>Version: 1.1</li>
+            <li>Doc: <a href="https://github.com/BitonicNL/bl3p-api/tree/master/docs" target="_blank">API</a></li>
+            <li>Country: Netherlands, EU</li>
+        </ul>
+        <p><b>Bleutrade</b></p>
+        <ul>
+            <li>Id: bleutrade</li>
+            <li><a href="https://bleutrade.com" target="_blank">Bleutrade</a></li>
+            <li>Version: 2</li>
+            <li>Doc: <a href="https://bleutrade.com/help/API" target="_blank">API</a></li>
+            <li>Country: Brazil</li>
+        </ul>
+        <p><b>BtcBox</b></p>
+        <ul>
+            <li>Id: btcbox</li>
+            <li><a href="https://www.btcbox.co.jp" target="_blank">BtcBox</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://www.btcbox.co.jp/help/asm" target="_blank">API</a></li>
+            <li>Country: Japan</li>
+        </ul>
+        <p><b>BTCChina</b></p>
+        <ul>
+            <li>Id: btcchina</li>
+            <li><a href="https://www.btcchina.com" target="_blank">BTCChina</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://www.btcchina.com/apidocs" target="_blank">API</a></li>
+            <li>Country: China</li>
+        </ul>
+        <p><b>BTCExchange</b></p>
+        <ul>
+            <li>Id: btcexchange	</li>
+            <li><a href="https://www.btcexchange.ph" target="_blank">BTCChina</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://github.com/BTCTrader/broker-api-docs" target="_blank">API</a></li>
+            <li>Country: Philippines</li>
+        </ul>
+        <p><b>BTC Markets</b></p>
+        <ul>
+            <li>Id: btcmarket</li>
+            <li><a href="https://btcmarkets.net" target="_blank">BTC Markets</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://github.com/BTCMarkets/API" target="_blank">API</a></li>
+            <li>Country: Australia</li>
+        </ul>
+        <p><b>BTC Trade UA</b></p>
+        <ul>
+            <li>Id: btctradeua</li>
+            <li><a href="https://btc-trade.com.ua" target="_blank">BTC Trade UA</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://docs.google.com/document/d/1ocYA0yMy_RXd561sfG3qEPZ80kyll36HUxvCRe5GbhE/edit" target="_blank">API</a></li>
+            <li>Country: Ukraine</li>
+        </ul>
+        <p><b>BTCTurk</b></p>
+        <ul>
+            <li>Id: btcturk</li>
+            <li><a href="https://www.btcturk.com" target="_blank">BTCTurk</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://github.com/BTCTrader/broker-api-docs" target="_blank">API</a></li>
+            <li>Country: Turkey</li>
+        </ul>
+        <p><b>BTCX</b></p>
+        <ul>
+            <li>Id: btcx</li>
+            <li><a href="https://btc-x.is" target="_blank">BTCX</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://btc-x.is/custom/api-document.html" target="_blank">API</a></li>
+            <li>Country: Iceland, US, EU</li>
+        </ul>
+        <p><b>Bter</b></p>
+        <ul>
+            <li>Id: bter</li>
+            <li><a href="https://bter.com" target="_blank">Bter</a></li>
+            <li>Version: 2</li>
+            <li>Doc: <a href="https://bter.com/api2" target="_blank">API</a></li>
+            <li>Country: Iceland, British Virgin Islands, China</li>
+        </ul>
+        <p><b>BX.in.th</b></p>
+        <ul>
+            <li>Id: bxinth</li>
+            <li><a href="https://bx.in.th" target="_blank">BX.in.th</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://bx.in.th/info/api" target="_blank">API</a></li>
+            <li>Country: Thailand</li>
+        </ul>
+        <p><b>C-CEX</b></p>
+        <ul>
+            <li>Id: ccex</li>
+            <li><a href="https://c-cex.com" target="_blank">C-CEX</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://c-cex.com/?id=api" target="_blank">API</a></li>
+            <li>Country: Germany, EU</li>
+        </ul>
+        <p><b>CEX.IO</b></p>
+        <ul>
+            <li>Id: cex</li>
+            <li><a href="https://cex.io" target="_blank">CEX.IO</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://cex.io/cex-api" target="_blank">API</a></li>
+            <li>Country: UK, EU, Cyprus, Russia</li>
+        </ul>
+        <p><b>CHBTC</b></p>
+        <ul>
+            <li>Id: chbtc</li>
+            <li><a href="https://trade.chbtc.com/api" target="_blank">CHBTC</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://www.chbtc.com/i/developer" target="_blank">API</a></li>
+            <li>Country: China</li>
+        </ul>
+        <p><b>ChileBit</b></p>
+        <ul>
+            <li>Id: chilebit</li>
+            <li><a href="https://chilebit.net" target="_blank">ChileBit</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://blinktrade.com/docs" target="_blank">API</a></li>
+            <li>Country: Chile</li>
+        </ul>
+        <p><b>coincheck</b></p>
+        <ul>
+            <li>Id: coincheck</li>
+            <li><a href="https://coincheck.com" target="_blank">coincheck</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://coincheck.com/documents/exchange/api" target="_blank">API</a></li>
+            <li>Country: Japan, Indonesia</li>
+        </ul>
+        <p><b>coincheck</b></p>
+        <ul>
+            <li>Id: coinfloor</li>
+            <li><a href="https://www.coinfloor.co.uk" target="_blank">coinfloor</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://github.com/coinfloor/api" target="_blank">API</a></li>
+            <li>Country: UK</li>
+        </ul>
+        <p><b>Coingi</b></p>
+        <ul>
+            <li>Id: coingi</li>
+            <li><a href="https://coingi.com" target="_blank">Coingi</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="http://docs.coingi.apiary.io" target="_blank">API</a></li>
+            <li>Country: Panama, Bulgaria, China, US</li>
+        </ul>
+        <p><b>CoinMarketCap</b></p>
+        <ul>
+            <li>Id: coinmarketcap</li>
+            <li><a href="https://coinmarketcap.com" target="_blank">CoinMarketCap</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://coinmarketcap.com/api" target="_blank">API</a></li>
+            <li>Country: US</li>
+        </ul>
+        <p><b>CoinMate</b></p>
+        <ul>
+            <li>Id: coinmate</li>
+            <li><a href="https://coinmate.io" target="_blank">CoinMate</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="http://docs.coinmate.apiary.io" target="_blank">API</a></li>
+            <li>Country: UK, Czech Republic</li>
+        </ul>
+        <p><b>Coinsecure</b></p>
+        <ul>
+            <li>Id: coinsecure</li>
+            <li><a href="https://coinsecure.in" target="_blank">Coinsecure</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://api.coinsecure.in" target="_blank">API</a></li>
+            <li>Country: India</li>
+        </ul>
+        <p><b>CoinSpot</b></p>
+        <ul>
+            <li>Id: coinspot</li>
+            <li><a href="https://www.coinspot.com.au" target="_blank">CoinSpot</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://www.coinspot.com.au/api" target="_blank">API</a></li>
+            <li>Country: Australia</li>
+        </ul>
+        <p><b>Cryptopia</b></p>
+        <ul>
+            <li>Id: cryptopia</li>
+            <li><a href="https://www.cryptopia.co.nz" target="_blank">Cryptopia</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://www.cryptopia.co.nz/Forum/Category/45" target="_blank">API</a></li>
+            <li>Country: New Zealand</li>
+        </ul>
+        <p><b>DSX</b></p>
+        <ul>
+            <li>Id: dsx</li>
+            <li><a href="https://dsx.uk" target="_blank">DSX</a></li>
+            <li>Version: 3</li>
+            <li>Doc: <a href="https://api.dsx.uk" target="_blank">API</a></li>
+            <li>Country: UK</li>
+        </ul>
+        <p><b>EXMO</b></p>
+        <ul>
+            <li>Id: exmo</li>
+            <li><a href="https://exmo.me" target="_blank">EXMO</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://exmo.me/en/api_doc" target="_blank">API</a></li>
+            <li>Country: Spain, Russia</li>
+        </ul>
+        <p><b>flowBTC</b></p>
+        <ul>
+            <li>Id: flowbtc</li>
+            <li><a href="https://trader.flowbtc.com" target="_blank">flowBTC</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="http://www.flowbtc.com.br/api" target="_blank">API</a></li>
+            <li>Country: Brazil</li>
+        </ul>
+        <p><b>FoxBit</b></p>
+        <ul>
+            <li>Id: foxbit</li>
+            <li><a href="https://foxbit.exchange" target="_blank">FoxBit</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://blinktrade.com/docs" target="_blank">API</a></li>
+            <li>Country: Brazil</li>
+        </ul>
+        <p><b>FYB-SE</b></p>
+        <ul>
+            <li>Id: fybse</li>
+            <li><a href="https://www.fybse.se" target="_blank">FYB-SE</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="http://docs.fyb.apiary.io" target="_blank">API</a></li>
+            <li>Country: Sweden</li>
+        </ul>
+        <p><b>FYB-SG</b></p>
+        <ul>
+            <li>Id: fybsg</li>
+            <li><a href="https://www.fybsg.com" target="_blank">FYB-SG</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="http://docs.fyb.apiary.io" target="_blank">API</a></li>
+            <li>Country: Singapore</li>
+        </ul>
+        <p><b>Gatecoin</b></p>
+        <ul>
+            <li>Id: gatecoin</li>
+            <li><a href="https://gatecoin.com" target="_blank">Gatecoin</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://gatecoin.com/api" target="_blank">API</a></li>
+            <li>Country: Hong Kong</li>
+        </ul>
+        <p><b>Gate.io</b></p>
+        <ul>
+            <li>Id: gateio</li>
+            <li><a href="https://gate.io" target="_blank">Gatecoin</a></li>
+            <li>Version: 2</li>
+            <li>Doc: <a href="https://gate.io/api2" target="_blank">API</a></li>
+            <li>Country: China</li>
+        </ul>
+        <p><b>GDAX</b></p>
+        <ul>
+            <li>Id: gdax</li>
+            <li><a href="https://www.gdax.com" target="_blank">GDAX</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://docs.gdax.com" target="_blank">API</a></li>
+            <li>Country: US</li>
+        </ul>
+        <p><b>Gemini</b></p>
+        <ul>
+            <li>Id: gemini</li>
+            <li><a href="https://gemini.com" target="_blank">Gemini</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://docs.gemini.com/rest-api" target="_blank">API</a></li>
+            <li>Country: US</li>
+        </ul>
+        <p><b>GetBTC</b></p>
+        <ul>
+            <li>Id: getbtc</li>
+            <li><a href="https://getbtc.org" target="_blank">GetBTC</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://getbtc.org/api-docs.php" target="_blank">API</a></li>
+            <li>Country: St. Vincent & Grenadines, Russia</li>
+        </ul>
+        <p><b>HitBTC</b></p>
+        <ul>
+            <li>Id: hitbtc</li>
+            <li><a href="https://hitbtc.com" target="_blank">HitBTC</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://github.com/hitbtc-com/hitbtc-api/blob/master/APIv1.md" target="_blank">API</a></li>
+            <li>Country: Hong Kong</li>
+        </ul>
+        <p><b>HitBTC v2</b></p>
+        <ul>
+            <li>Id: hitbtc2</li>
+            <li><a href="https://hitbtc.com" target="_blank">HitBTC v2</a></li>
+            <li>Version: 2</li>
+            <li>Doc: <a href="https://api.hitbtc.com" target="_blank">API</a></li>
+            <li>Country: Hong Kong</li>
+        </ul>
+        <p><b>Huobi</b></p>
+        <ul>
+            <li>Id: huobi</li>
+            <li><a href="https://www.huobi.com" target="_blank">Huobi</a></li>
+            <li>Version: 3</li>
+            <li>Doc: <a href="https://github.com/huobiapi/API_Docs_en/wiki" target="_blank">API</a></li>
+            <li>Country: China</li>
+        </ul>
+        <p><b>Huobi CNY</b></p>
+        <ul>
+            <li>Id: huobicny</li>
+            <li><a href="https://www.huobi.com" target="_blank">Huobi CNY</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://github.com/huobiapi/API_Docs/wiki/REST_api_reference" target="_blank">API</a></li>
+            <li>Country: China</li>
+        </ul>
+        <p><b>Huobi Pro</b></p>
+        <ul>
+            <li>Id: huobipro</li>
+            <li><a href="https://www.huobi.pro" target="_blank">Huobi Pro</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://github.com/huobiapi/API_Docs/wiki/REST_api_reference" target="_blank">API</a></li>
+            <li>Country: China</li>
+        </ul>
+        <p><b>Independent Reserve</b></p>
+        <ul>
+            <li>Id: independentreserve</li>
+            <li><a href="https://www.independentreserve.com" target="_blank">Independent Reserve</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://www.independentreserve.com/API" target="_blank">API</a></li>
+            <li>Country: Australia, New Zealand</li>
+        </ul>
+        <p><b>itBit</b></p>
+        <ul>
+            <li>Id: itbit</li>
+            <li><a href="https://www.itbit.com" target="_blank">itBit</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://api.itbit.com/docs" target="_blank">API</a></li>
+            <li>Country: US</li>
+        </ul>
+        <p><b>jubi.com</b></p>
+        <ul>
+            <li>Id: jubi</li>
+            <li><a href="https://www.jubi.com" target="_blank">jubi.com</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://www.jubi.com/help/api.html" target="_blank">API</a></li>
+            <li>Country: China</li>
+        </ul>
+        <p><b>Kraken</b></p>
+        <ul>
+            <li>Id: kraken</li>
+            <li><a href="https://www.kraken.com" target="_blank">Kraken</a></li>
+            <li>Version: 0</li>
+            <li>Doc: <a href="https://www.kraken.com/en-us/help/api" target="_blank">API</a></li>
+            <li>Country: US</li>
+        </ul>
+        <p><b>Kucoin</b></p>
+        <ul>
+            <li>Id: kucoin</li>
+            <li><a href="https://kucoin.com" target="_blank">Kucoin</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://kucoinapidocs.docs.apiary.io" target="_blank">API</a></li>
+            <li>Country: Hong Kong</li>
+        </ul>
+        <p><b>Kuna</b></p>
+        <ul>
+            <li>Id: kuna</li>
+            <li><a href="https://kuna.io" target="_blank">Kuna</a></li>
+            <li>Version: 2</li>
+            <li>Doc: <a href="https://kuna.io/documents/api" target="_blank">API</a></li>
+            <li>Country: Ukraine</li>
+        </ul>
+        <p><b>LakeBTC</b></p>
+        <ul>
+            <li>Id: lakebtc</li>
+            <li><a href="https://www.lakebtc.com" target="_blank">LakeBTC</a></li>
+            <li>Version: 2</li>
+            <li>Doc: <a href="https://www.lakebtc.com/s/api_v2" target="_blank">API</a></li>
+            <li>Country: US</li>
+        </ul>
+        <p><b>Liqui</b></p>
+        <ul>
+            <li>Id: liqui</li>
+            <li><a href="https://liqui.io" target="_blank">Liqui</a></li>
+            <li>Version: 3</li>
+            <li>Doc: <a href="https://liqui.io/api" target="_blank">API</a></li>
+            <li>Country: Ukraine</li>
+        </ul>
+        <p><b>LiveCoin</b></p>
+        <ul>
+            <li>Id: livecoin</li>
+            <li><a href="https://www.livecoin.net" target="_blank">LiveCoin</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://www.livecoin.net/api?lang=en" target="_blank">API</a></li>
+            <li>Country: US, UK, Russia</li>
+        </ul>
+        <p><b>luno</b></p>
+        <ul>
+            <li>Id: luno</li>
+            <li><a href="https://www.luno.com" target="_blank">luno</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://www.luno.com/en/api" target="_blank">API</a></li>
+            <li>Country: UK, Singapore, South Africa</li>
+        </ul>
+        <p><b>Mercado Bitcoin</b></p>
+        <ul>
+            <li>Id: mercado</li>
+            <li><a href="https://www.mercadobitcoin.com.br" target="_blank">Mercado Bitcoin</a></li>
+            <li>Version: 3</li>
+            <li>Doc: <a href="https://www.mercadobitcoin.com.br/api-doc" target="_blank">API</a></li>
+            <li>Country: Brazil</li>
+        </ul>
+        <p><b>MixCoins</b></p>
+        <ul>
+            <li>Id: mixcoins</li>
+            <li><a href="https://mixcoins.com" target="_blank">MixCoins</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://mixcoins.com/help/api" target="_blank">API</a></li>
+            <li>Country: UK, Hong Kong</li>
+        </ul>
+        <p><b>Novaexchange</b></p>
+        <ul>
+            <li>Id: nova</li>
+            <li><a href="https://novaexchange.com" target="_blank">Novaexchange</a></li>
+            <li>Version: 2</li>
+            <li>Doc: <a href="https://novaexchange.com/remote/faq" target="_blank">API</a></li>
+            <li>Country: Tanzania</li>
+        </ul>
+        <p><b>OKCoin CNY</b></p>
+        <ul>
+            <li>Id: okcoincny</li>
+            <li><a href="https://www.okcoin.cn" target="_blank">OKCoin CNY</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://www.okcoin.cn/rest_getStarted.html" target="_blank">API</a></li>
+            <li>Country: China</li>
+        </ul>
+        <p><b>OKCoin USD</b></p>
+        <ul>
+            <li>Id: okcoinusd</li>
+            <li><a href="https://www.okcoin.com" target="_blank">OKCoin USD</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://www.okcoin.com/rest_getStarted.html" target="_blank">API</a></li>
+            <li>Country: China, US</li>
+        </ul>
+        <p><b>OKEX</b></p>
+        <ul>
+            <li>Id: okex</li>
+            <li><a href="https://www.okex.com" target="_blank">OKEX</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://www.okex.com/rest_getStarted.html" target="_blank">API</a></li>
+            <li>Country: China, US</li>
+        </ul>
+        <p><b>Paymium</b></p>
+        <ul>
+            <li>Id: paymium</li>
+            <li><a href="https://www.paymium.com" target="_blank">Paymium</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://github.com/Paymium/api-documentation" target="_blank">API</a></li>
+            <li>Country: France, EU</li>
+        </ul>
+        <p><b>Poloniex</b></p>
+        <ul>
+            <li>Id: poloniex</li>
+            <li><a href="https://poloniex.com" target="_blank">Poloniex</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://poloniex.com/support/api" target="_blank">API</a></li>
+            <li>Country: US</li>
+        </ul>
+        <p><b>QRYPTOS</b></p>
+        <ul>
+            <li>Id: qryptos</li>
+            <li><a href="https://www.qryptos.com" target="_blank">QRYPTOS</a></li>
+            <li>Version: 2</li>
+            <li>Doc: <a href="https://developers.quoine.com" target="_blank">API</a></li>
+            <li>Country: China, Taiwan</li>
+        </ul>
+        <p><b>QuadrigaCX</b></p>
+        <ul>
+            <li>Id: quadrigacx</li>
+            <li><a href="https://www.quadrigacx.com" target="_blank">QuadrigaCX</a></li>
+            <li>Version: 2</li>
+            <li>Doc: <a href="https://www.quadrigacx.com/api_info" target="_blank">API</a></li>
+            <li>Country: Canada</li>
+        </ul>
+        <p><b>QUOINE</b></p>
+        <ul>
+            <li>Id: quoine</li>
+            <li><a href="https://www.quoine.com" target="_blank">QUOINE</a></li>
+            <li>Version: 2</li>
+            <li>Doc: <a href="https://developers.quoine.com" target="_blank">API</a></li>
+            <li>Country: Japan, Singapore, Vietnam</li>
+        </ul>
+        <p><b>SouthXchange</b></p>
+        <ul>
+            <li>Id: southxchange</li>
+            <li><a href="https://www.southxchange.com" target="_blank">SouthXchange</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://www.southxchange.com/Home/Api" target="_blank">API</a></li>
+            <li>Country: Argentina</li>
+        </ul>
+        <p><b>SurBitcoin</b></p>
+        <ul>
+            <li>Id: surbitcoin</li>
+            <li><a href="https://surbitcoin.com" target="_blank">SurBitcoin</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://blinktrade.com/docs" target="_blank">API</a></li>
+            <li>Country: Venezuela</li>
+        </ul>
+        <p><b>TheRockTrading</b></p>
+        <ul>
+            <li>Id: therock</li>
+            <li><a href="https://therocktrading.com" target="_blank">TheRockTrading</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://api.therocktrading.com/doc/v1/index.html" target="_blank">API</a></li>
+            <li>Country: Malta</li>
+        </ul>
+        <p><b>Tidex</b></p>
+        <ul>
+            <li>Id: tidex</li>
+            <li><a href="https://tidex.com" target="_blank">Tidex</a></li>
+            <li>Version: 3</li>
+            <li>Doc: <a href="https://tidex.com/public-api" target="_blank">API</a></li>
+            <li>Country: UK</li>
+        </ul>
+        <p><b>UrduBit</b></p>
+        <ul>
+            <li>Id: urdubit</li>
+            <li><a href="https://urdubit.com" target="_blank">UrduBit</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://blinktrade.com/docs" target="_blank">API</a></li>
+            <li>Country: Pakistan</li>
+        </ul>
+        <p><b>Vaultoro</b></p>
+        <ul>
+            <li>Id: vaultoro</li>
+            <li><a href="https://www.vaultoro.com" target="_blank">Vaultoro</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://api.vaultoro.com" target="_blank">API</a></li>
+            <li>Country: Switzerland</li>
+        </ul>
+        <p><b>VBTC</b></p>
+        <ul>
+            <li>Id: vbtc</li>
+            <li><a href="https://vbtc.exchange" target="_blank">VBTC</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://blinktrade.com/docs" target="_blank">API</a></li>
+            <li>Country: Vietnam</li>
+        </ul>
+        <p><b>VirWoX</b></p>
+        <ul>
+            <li>Id: virwox</li>
+            <li><a href="https://www.virwox.com" target="_blank">VirWoX</a></li>
+            <li>Version: *</li>
+            <li>Doc: <a href="https://www.virwox.com/developers.php" target="_blank">API</a></li>
+            <li>Country: Austria, EU</li>
+        </ul>
+        <p><b>WEX</b></p>
+        <ul>
+            <li>Id: wex</li>
+            <li><a href="https://wex.nz" target="_blank">WEX</a></li>
+            <li>Version: 3</li>
+            <li>Doc: <a href="https://wex.nz/api/3/docs" target="_blank">API</a></li>
+            <li>Country: New Zealand</li>
+        </ul>
+        <p><b>xBTCe</b></p>
+        <ul>
+            <li>Id: xbtce</li>
+            <li><a href="https://www.xbtce.com" target="_blank">xBTCe</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://www.xbtce.com/tradeapi" target="_blank">API</a></li>
+            <li>Country: Russia</li>
+        </ul>
+        <p><b>YoBit</b></p>
+        <ul>
+            <li>Id: yobit</li>
+            <li><a href="https://www.yobit.net" target="_blank">YoBit</a></li>
+            <li>Version: 3</li>
+            <li>Doc: <a href="https://www.yobit.net/en/api" target="_blank">API</a></li>
+            <li>Country: Russia</li>
+        </ul>
+        <p><b>YUNBI</b></p>
+        <ul>
+            <li>Id: yunbi</li>
+            <li><a href="https://yunbi.com" target="_blank">YUNBI</a></li>
+            <li>Version: 2</li>
+            <li>Doc: <a href="https://yunbi.com/documents/api/guide" target="_blank">API</a></li>
+            <li>Country: China</li>
+        </ul>
+        <p><b>Zaif</b></p>
+        <ul>
+            <li>Id: zaif</li>
+            <li><a href="https://zaif.jp" target="_blank">Zaif</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="http://techbureau-api-document.readthedocs.io/ja/latest/index.html" target="_blank">API</a></li>
+            <li>Country: Japan</li>
+        </ul>
+        <p><b>ZB</b></p>
+        <ul>
+            <li>Id: zb</li>
+            <li><a href="https://trade.zb.com/api" target="_blank">ZB</a></li>
+            <li>Version: 1</li>
+            <li>Doc: <a href="https://www.zb.com/i/developer" target="_blank">API</a></li>
+            <li>Country: China</li>
+        </ul>
+     </dd>
+  </dl>
+  <dl class="message-properties">
+    <dt>ApiKey<span class="property-type">Exchange ApiKey</span></dt>
+  </dl>
+  <dl class="message-properties">
+    <dt>Secret ApiKey<span class="property-type">Exchange Secret ApiKey</span></dt>
+  </dl>
+
   <h3>Outputs</h3>
   <dl class="message-properties">
      <dt>payload<span class="property-type">object</span></dt>
@@ -33,6 +892,7 @@
          </ul>
      </dd>
   </dl>
+
   <h3>Error</h3>
   <dl class="message-properties">
      <dt>error<span class="property-type">string</span></dt>
@@ -47,6 +907,7 @@
         category:'Traiding',
         defaults: {
             name: {value: ''},
+            exchange: {value: 'bittrex'},
             apikey: {value: ''},
             apisecret: {value: ''}
         },
