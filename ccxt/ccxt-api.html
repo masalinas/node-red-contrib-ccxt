@@ -4,6 +4,8 @@
     <label for="node-input-name"><i class="fa"></i>Name</label>
     <input type="text" id="node-input-name">
   </div>
+
+  <!-- Exchange selector -->
   <div class="form-row">
     <label for="node-input-exchange"><i class="fa "></i>Exchange</label>
     <select type="text" id="node-input-exchange">
@@ -103,13 +105,82 @@
       <option value="zb">ZB</option>
     </select>
   </div>
+
+  <!-- API selector -->
+  <div class="form-row">
+    <label for="node-input-api"><i class="fa"></i>API</label>
+    <select type="text" id="node-input-api">
+      <option value="loadMarkets">Load Markets</option>
+      <option value="fetchMarkets">Fetch Markets</option>
+      <option value="fetchTicker">Fetch Ticker</option>
+      <option value="fetchTickers">Fetch Tickers</option>
+      <option value="fetchOrderBook">Fetch Order Book</option>
+      <option value="fetchOHLCV">Fetch OHLCV</option>
+      <option value="fetchTrades">Fetch Trades</option>
+      <option value="privateMethod">Private Method</option>
+    </select>
+  </div>
+
+  <!-- load market attributes -->
+  <div class="form-row node-input-public-api-load-markets" style="display: none;">
+     <label for="node-input-loadmarketsreload"><i class="fa"></i>Reload</label>
+     <input type="checkbox" id="node-input-loadmarketsreload">
+  </div>
+
+  <!-- fetch ticker attributes -->
+  <div class="form-row node-input-public-api-fetch-ticker" style="display: none;">
+     <label for="node-input-fetchtickersymbol"><i class="fa"></i>Symbol</label>
+     <input type="text" id="node-input-fetchtickersymbol">
+  </div>
+
+  <!-- fetch order book attributes -->
+  <div class="form-row node-input-public-api-order-book" style="display: none;">
+     <label for="node-input-orderbooksymbol"><i class="fa"></i>Symbol</label>
+     <input type="text" id="node-input-orderbooksymbol">
+  </div>
+
+  <!-- fetch OHCLV attributes -->
+  <div class="form-row node-input-public-api-fetch-ohlcv" style="display: none;">
+     <label for="node-input-fetchohlcvsymbol"><i class="fa"></i>Symbol</label>
+     <input type="text" id="node-input-fetchohlcvsymbol">
+  </div>
+
+  <div class="form-row node-input-public-api-fetch-ohlcv" style="display: none;">
+     <label for="node-input-fetchohlcvtimeframe"><i class="fa"></i>Time Frame</label>
+     <select type="text" id="node-input-fetchohlcvtimeframe">
+        <option value="1m">1 Min</option>
+        <option value="5m">5 Min</option>
+        <option value="30m">30 Min</option>
+        <option value="1h">1 Hour</option>
+        <option value="1d">1 Day</option>
+     </select>
+  </div>
+
+  <div class="form-row node-input-public-api-fetch-ohlcv" style="display: none;">
+     <label for="node-input-fetchohlcvsince"><i class="fa"></i>Since</label>
+     <input type="date" id="node-input-fetchohlcvsince">
+  </div>
+
+  <div class="form-row node-input-public-api-fetch-ohlcv" style="display: none;">
+     <label for="node-input-fetchohlcvlimit"><i class="fa"></i>Limit</label>
+     <input type="number" id="node-input-fetchohlcvlimit">
+  </div>
+
+  <!-- fetch trades attributes -->
+  <div class="form-row node-input-public-api-fetch-trades" style="display: none;">
+     <label for="node-input-fetchtradessymbol"><i class="fa"></i>Symbol</label>
+     <input type="text" id="node-input-fetchtradessymbol">
+  </div>
+
+  <!-- private API keys -->
   <div class="form-row">
     <label for="node-input-apikey"><i class="fa"></i>ApiKey</label>
-    <input type="text" id="node-input-apikey" placeholder="Bittrex ApiKey">
+    <input type="text" id="node-input-apikey" placeholder="Broker ApiKey">
   </div>
+
   <div class="form-row">
-    <label for="node-input-apisecret"><i class="fa"></i>Secret ApiKey</label>
-    <input type="text" id="node-input-apisecret" placeholder="Bittrex Secret ApiKey">
+    <label for="node-input-secret"><i class="fa"></i>Secret ApiKey</label>
+    <input type="text" id="node-input-secret" placeholder="Broker Secret ApiKey">
   </div>
 </script>
 
@@ -903,13 +974,25 @@
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType("ccxt-api",{
+    RED.nodes.registerType("ccxt-api", {
         category:'Traiding',
         defaults: {
             name: {value: ''},
-            exchange: {value: 'bittrex'},
+            exchange: {value: 'bittrex', required:true},
+            api: {value: 'loadMarkets'},
+            loadmarketsreload: {value: false},
+            orderbooksymbol: {value: ''},
+            fetchtickersymbol: {value: ''},
+            fetchohlcvsymbol: {value: ''},
+            fetchohlcvtimeframe: {value: '1m'},
+            fetchohlcvsince: {value: undefined},
+            fetchohlcvlimit: {value: undefined},
+            fetchtradessymbol: {value: ''},
+            privatemethod: {value: ''}
+        },
+        credentials: {
             apikey: {value: ''},
-            apisecret: {value: ''}
+            secret: {value: ''}
         },
         outputs: 1,
         inputs: 1,
@@ -917,6 +1000,64 @@
             return this.name || "ccxt API";
         },
         color: '#D8BFD8',
-        icon: 'bitcoin-symbol.png'
+        icon: 'bitcoin-symbol.png',
+        oneditprepare: function() {
+            var node = this;
+
+            $("#node-input-api").change(function() {
+                var exchange = $("#node-input-exchange option:selected").val();
+                var api = $("#node-input-api option:selected").val();
+
+                if (api === "loadMarkets") {
+                    $(".node-input-public-api-load-markets").show();
+                    $(".node-input-public-api-order-book").hide();
+                    $(".node-input-public-api-fetch-ticker").hide();
+                    $(".node-input-public-api-fetch-ohlcv").hide();
+                    $(".node-input-public-api-fetch-trades").hide();
+                } else if (api === "fetchMarkets") {
+                    $(".node-input-public-api-load-markets").hide();
+                    $(".node-input-public-api-order-book").hide();
+                    $(".node-input-public-api-fetch-ticker").hide();
+                    $(".node-input-public-api-fetch-ohlcv").hide();
+                    $(".node-input-public-api-fetch-trades").hide();
+                } else if (api === "fetchTicker") {
+                    $(".node-input-public-api-load-markets").hide();
+                    $(".node-input-public-api-order-book").hide();
+                    $(".node-input-public-api-fetch-ticker").show();
+                    $(".node-input-public-api-fetch-ohlcv").hide();
+                    $(".node-input-public-api-fetch-trades").hide();
+                } else if (api === "fetchTickers") {
+                    $(".node-input-public-api-load-markets").hide();
+                    $(".node-input-public-api-order-book").hide();
+                    $(".node-input-public-api-fetch-ticker").hide();
+                    $(".node-input-public-api-fetch-ohlcv").hide();
+                    $(".node-input-public-api-fetch-trades").hide();
+                } else if (api === "fetchOrderBook") {
+                    $(".node-input-public-api-load-markets").hide();
+                    $(".node-input-public-api-order-book").show();
+                    $(".node-input-public-api-fetch-ticker").hide();
+                    $(".node-input-public-api-fetch-ohlcv").hide();
+                    $(".node-input-public-api-fetch-trades").hide();
+                } else if (api === "fetchOHLCV") {
+                    $(".node-input-public-api-load-markets").hide();
+                    $(".node-input-public-api-order-book").hide();
+                    $(".node-input-public-api-fetch-ticker").hide();
+                    $(".node-input-public-api-fetch-ohlcv").show();
+                    $(".node-input-public-api-fetch-trades").hide();
+                } else if (api === "fetchTrades") {
+                    $(".node-input-public-api-load-markets").hide();
+                    $(".node-input-public-api-order-book").hide();
+                    $(".node-input-public-api-fetch-ticker").hide();
+                    $(".node-input-public-api-fetch-ohlcv").hide();
+                    $(".node-input-public-api-fetch-trades").show();
+                } else {
+                    $(".node-input-public-api-load-markets").hide();
+                    $(".node-input-public-api-order-book").hide();
+                    $(".node-input-public-api-fetch-ticker").hide();
+                    $(".node-input-public-api-fetch-ohlcv").hide();
+                    $(".node-input-public-api-fetch-trades").hide();
+                }
+            });
+        }
     });
 </script>
