@@ -2,11 +2,16 @@ module.exports = function(RED) {
     "use strict";
 
     // load package dependencies
+    var serveStatic = require('serve-static');
+    var path = require('path');
     const ccxt = require('ccxt');
     const moment = require('moment');
 
     // load RED settings
+    var app = RED.httpNode;
     var settings = RED.settings;
+
+    app.use('/', serveStatic(path.join(__dirname, "images")));
 
     // ccxt: API
     function CcxtApi(config) {
@@ -19,7 +24,7 @@ module.exports = function(RED) {
             const asyncInput = async function async(config) {
                 try {
                     // connect to exchange selected
-                    let exchange = undefined;
+                    var exchange = undefined;
                     
                     if (this.credentials.apikey)
                         exchange = new ccxt[config.exchange] (
@@ -32,46 +37,20 @@ module.exports = function(RED) {
                         exchange = new ccxt[config.exchange] ();                    
 
                     // execute api
-                    let result = undefined;
+                    var result;
 
-                    let api = undefined;
-                    let loadmarketsreload = undefined;
-                    let fetchtickersymbol = undefined;
-                    let orderbooksymbol = undefined;
-                    let fetchohlcvsymbol = undefined;
-                    let fetchohlcvtimeframe = undefined;
-                    let fetchohlcvsince = undefined;
-                    let fetchohlcvlimit = undefined;
-                    let fetchtradessymbol = undefined;
-                    let privatemethod = undefined;
-
-                    if (msg.payload.exchange !== undefined) {
-                        api = msg.payload.api;
-
-                        loadmarketsreload = msg.payload.loadmarketsreload;
-                        fetchtickersymbol = msg.payload.fetchtickersymbol;
-                        orderbooksymbol = msg.payload.orderbooksymbol;
-                        fetchohlcvsymbol = msg.payload.fetchohlcvsymbol;
-                        fetchohlcvtimeframe = msg.payload.fetchohlcvtimeframe;
-                        fetchohlcvsince = msg.payload.fetchohlcvsince;
-                        fetchohlcvlimit = msg.payload.fetchohlcvlimit;
-                        fetchtradessymbol = msg.payload.fetchtradessymbol;
-                        privatemethod = msg.payload.privatemethod;
-                    }
-                    else {
-                        api = config.api;
-
-                        loadmarketsreload = config.loadmarketsreload;
-                        fetchtickersymbol = config.fetchtickersymbol;
-                        orderbooksymbol = config.orderbooksymbol;
-                        fetchohlcvsymbol = config.fetchohlcvsymbol;
-                        fetchohlcvtimeframe = config.fetchohlcvtimeframe;
-                        fetchohlcvsince = config.fetchohlcvsince;
-                        fetchohlcvlimit = config.fetchohlcvlimit;
-                        fetchtradessymbol = config.fetchtradessymbol;
-                        privatemethod = config.privatemethod;
-                    }
-
+                    var api = config.api;
+                    
+                    var loadmarketsreload = config.loadmarketsreload;
+                    var fetchtickersymbol = config.fetchtickersymbol;
+                    var orderbooksymbol = config.orderbooksymbol;
+                    var fetchohlcvsymbol = config.fetchohlcvsymbol;
+                    var fetchohlcvtimeframe = config.fetchohlcvtimeframe;
+                    var fetchohlcvsince = config.fetchohlcvsince;
+                    var fetchohlcvlimit = config.fetchohlcvlimit;
+                    var fetchtradessymbol = config.fetchtradessymbol;
+                    var privatemethod = config.privatemethod;
+                    
                     if (api === "loadMarkets") {
                         result = await exchange.loadMarkets(loadmarketsreload);
                     } else if (api === "fetchMarkets") {
@@ -89,10 +68,11 @@ module.exports = function(RED) {
                         result = await exchange.fetchOHLCV(fetchohlcvsymbol, fetchohlcvtimeframe, fetchohlcvsince, fetchohlcvlimit);
                     } else if (api === "fetchTrades") {
                         result = await exchange.fetchTrades(fetchtradessymbol);
-                    } else if (api === "privateMethod") {
+                    } else if (api === "customAPI") {
                         // test Kraken API
                         console.log (new ccxt.kraken ());
-                        result = await exchange.privatePostBalance();                        
+                        //result = await exchange.privatePostBalance(); 
+                        result = await exchange.publicGetAssets();
                     } else {
                         node.status({fill:"yellow", shape: "ring", text: "Bittrex API not exist"});
                         node.warning("Bittrex API not exist");
