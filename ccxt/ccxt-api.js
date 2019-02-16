@@ -19,7 +19,7 @@ module.exports = function(RED) {
 
         var node = this;
 
-        // execute Bittrex API
+        // execute ccxt API
         node.on('input', function (msg) {
             const asyncInput = async function async(config) {
                 try {
