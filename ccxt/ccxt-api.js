@@ -69,9 +69,10 @@ module.exports = function(RED) {
                         result = await exchange.fetchTrades(fetchtradessymbol);
                     } else if (api === "customAPI") {
                         // test Kraken API
-                        console.log (new ccxt.kraken ());
+                        //console.log (new ccxt.kraken ());
                         //result = await exchange.privatePostBalance(); 
-                        result = await exchange.publicGetAssets();
+                        //result = await exchange.publicGetAssets();
+                        result = await exchange.publicGetTicker ({ book: 'eth_mxn' }) 
                     } else {
                         node.status({fill:"yellow", shape: "ring", text: "Bittrex API not exist"});
                         node.warning("Bittrex API not exist");
@@ -86,7 +87,8 @@ module.exports = function(RED) {
                     node.send(msg);
                 } catch(err) {
                     node.status({fill:"red", shape: "ring", text: "ccxt error"});
-                    node.error("ccxt error", err);
+                    
+                    node.error(err.message, msg);
 
                     return;
                 }
