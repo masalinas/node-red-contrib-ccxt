@@ -49,7 +49,6 @@ module.exports = function(RED) {
                     var fetchohlcvsince = config.fetchohlcvsince;
                     var fetchohlcvlimit = config.fetchohlcvlimit;
                     var fetchtradessymbol = config.fetchtradessymbol;
-                    var privatemethod = config.privatemethod;
                     
                     if (api === "loadMarkets") {
                         result = await exchange.loadMarkets(loadmarketsreload);
