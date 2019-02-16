@@ -86,7 +86,7 @@ module.exports = function(RED) {
 
                     node.send(msg);
                 } catch(err) {
-                    node.status({fill:"red", shape: "ring", text: "ccxt error"});
+                    node.status({fill:"red", shape: "ring", text: "CCXT error"});
                     
                     node.error(err.message, msg);
 
