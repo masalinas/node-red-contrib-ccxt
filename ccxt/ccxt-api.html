@@ -208,6 +208,19 @@
      <input type="text" id="node-input-fetchtradessymbol">
   </div>
 
+  <!-- load Custom API Methods -->
+  <div class="form-row node-input-public-api-custom" style="display: none;">
+    <label for="node-input-public-api"><i class="fa"></i>Public API</label>
+    <select type="text" id="node-input-public-api">
+    </select>
+  </div>
+
+  <div class="form-row node-input-public-api-custom" style="display: none;">
+    <label for="node-input-private-api"><i class="fa"></i>Private API</label>
+    <select type="text" id="node-input-private-api">
+    </select>
+  </div>
+
   <!-- private API keys -->
   <div class="form-row">
     <label for="node-input-apikey"><i class="fa"></i>ApiKey</label>
@@ -1448,6 +1461,33 @@
         oneditprepare: function() {
             var node = this;
 
+            $("#node-input-exchange").change(function() {
+                var exchange = $("#node-input-exchange option:selected").val();
+                var api = $("#node-input-api option:selected").val();
+
+                if (api === "customAPI") {
+                    // recover exchange api from CCXT node package
+                    $.getJSON( 'apiMethods', { exchange: exchange }, function(result) {
+                        var publicApiElement = $("#node-input-public-api");
+                        var privateApiElement = $("#node-input-private-api");
+
+                        publicApiElement.empty();
+                        $.each(result.api.public.get, function(index, item) {
+                            publicApiElement.append($("<option />").val(index).text(item));
+                        });
+
+                        privateApiElement.empty();
+                        $.each(result.api.private.post, function(index, item) {
+                            privateApiElement.append($("<option />").val(index).text(item));
+                        });
+
+                        console.log(result);
+                    }).error(function(error) {
+                        console.log(error);
+                    });
+                }
+            });
+
             $("#node-input-api").change(function() {
                 var exchange = $("#node-input-exchange option:selected").val();
                 var api = $("#node-input-api option:selected").val();
@@ -1458,48 +1498,83 @@
                     $(".node-input-public-api-fetch-ticker").hide();
                     $(".node-input-public-api-fetch-ohlcv").hide();
                     $(".node-input-public-api-fetch-trades").hide();
+                    $(".node-input-public-api-custom").hide();
                 } else if (api === "fetchMarkets") {
                     $(".node-input-public-api-load-markets").hide();
                     $(".node-input-public-api-order-book").hide();
                     $(".node-input-public-api-fetch-ticker").hide();
                     $(".node-input-public-api-fetch-ohlcv").hide();
                     $(".node-input-public-api-fetch-trades").hide();
+                    $(".node-input-public-api-custom").hide();
                 } else if (api === "fetchTicker") {
                     $(".node-input-public-api-load-markets").hide();
                     $(".node-input-public-api-order-book").hide();
                     $(".node-input-public-api-fetch-ticker").show();
                     $(".node-input-public-api-fetch-ohlcv").hide();
                     $(".node-input-public-api-fetch-trades").hide();
+                    $(".node-input-public-api-custom").hide();
                 } else if (api === "fetchTickers") {
                     $(".node-input-public-api-load-markets").hide();
                     $(".node-input-public-api-order-book").hide();
                     $(".node-input-public-api-fetch-ticker").hide();
                     $(".node-input-public-api-fetch-ohlcv").hide();
                     $(".node-input-public-api-fetch-trades").hide();
+                    $(".node-input-public-api-custom").hide();
                 } else if (api === "fetchOrderBook") {
                     $(".node-input-public-api-load-markets").hide();
                     $(".node-input-public-api-order-book").show();
                     $(".node-input-public-api-fetch-ticker").hide();
                     $(".node-input-public-api-fetch-ohlcv").hide();
                     $(".node-input-public-api-fetch-trades").hide();
+                    $(".node-input-public-api-custom").hide();
                 } else if (api === "fetchOHLCV") {
                     $(".node-input-public-api-load-markets").hide();
                     $(".node-input-public-api-order-book").hide();
                     $(".node-input-public-api-fetch-ticker").hide();
                     $(".node-input-public-api-fetch-ohlcv").show();
                     $(".node-input-public-api-fetch-trades").hide();
+                    $(".node-input-public-api-custom").hide();
                 } else if (api === "fetchTrades") {
                     $(".node-input-public-api-load-markets").hide();
                     $(".node-input-public-api-order-book").hide();
                     $(".node-input-public-api-fetch-ticker").hide();
                     $(".node-input-public-api-fetch-ohlcv").hide();
                     $(".node-input-public-api-fetch-trades").show();
+                    $(".node-input-public-api-custom").hide();
+                } else if (api === "customAPI") {
+                    // recover exchange api from CCXT node package
+                    $.getJSON( 'apiMethods', { exchange: exchange }, function(result) {
+                        var publicApiElement = $("#node-input-public-api");
+                        var privateApiElement = $("#node-input-private-api");
+
+                        publicApiElement.empty();
+                        $.each(result.api.public.get, function(index, item) {
+                            publicApiElement.append($("<option />").val(index).text(item));
+                        });
+
+                        privateApiElement.empty();
+                        $.each(result.api.private.post, function(index, item) {
+                            privateApiElement.append($("<option />").val(index).text(item));
+                        });
+
+                        //console.log(result);
+                    }).error(function(error) {
+                        console.log(error);
+                    });
+
+                    $(".node-input-public-api-load-markets").hide();
+                    $(".node-input-public-api-order-book").hide();
+                    $(".node-input-public-api-fetch-ticker").hide();
+                    $(".node-input-public-api-fetch-ohlcv").hide();
+                    $(".node-input-public-api-fetch-trades").hide();
+                    $(".node-input-public-api-custom").show();
                 } else {
                     $(".node-input-public-api-load-markets").hide();
                     $(".node-input-public-api-order-book").hide();
                     $(".node-input-public-api-fetch-ticker").hide();
                     $(".node-input-public-api-fetch-ohlcv").hide();
                     $(".node-input-public-api-fetch-trades").hide();
+                    $(".node-input-public-api-custom").hide();
                 }
             });
         }

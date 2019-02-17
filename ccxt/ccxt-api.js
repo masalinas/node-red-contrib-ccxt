@@ -19,6 +19,30 @@ module.exports = function(RED) {
 
         var node = this;
 
+        // configure api methods
+        if (RED.settings.httpNodeRoot !== false) {
+            node.errorHandler = function(err, req, res, next) {
+                node.warn(err);
+
+                res.send(500);
+            };
+
+            node.callback = function(req, res) {
+                // connect to exchange
+                var exchange = new ccxt[req.query.exchange] ();
+
+                // return api exchange
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({ api: exchange.api }));
+            } 
+
+            node.corsHandler = function(req, res, next) { 
+                next(); 
+            }               
+        }
+
+        app.get('/apiMethods', node.corsHandler, node.callback, node.errorHandler);
+
         // execute ccxt API
         node.on('input', function (msg) {
             const asyncInput = async function async(config) {
@@ -72,10 +96,13 @@ module.exports = function(RED) {
                         //console.log (new ccxt.kraken ());
                         //result = await exchange.privatePostBalance(); 
                         //result = await exchange.publicGetAssets();
-                        result = await exchange.publicGetTicker ({ book: 'eth_mxn' }) 
+                        //result = await exchange.publicGetTicker({book: 'btc_mxn'}) // for bitso
+                        //result = await exchange.publicGetTicker({pair: 'BTCEUR, BCHEUR'}); // for kraken
+                        //result = await exchange['publicGetTicker']({pair: 'BTCEUR, BCHEUR'}); // for kraken 
+                        result = await exchange['publicGetOHLC']({pair: 'BTCEUR', interval: 30, since: 1550422800}); // for kraken                   
                     } else {
-                        node.status({fill:"yellow", shape: "ring", text: "Bittrex API not exist"});
-                        node.warning("Bittrex API not exist");
+                        node.status({fill:"yellow", shape: "ring", text: "CCXT API not exist"});
+                        node.warning("CCXT API not exist");
                     }
 
                     // clear any node error
