@@ -210,14 +210,16 @@
 
   <!-- load Custom API Methods -->
   <div class="form-row node-input-public-api-custom" style="display: none;">
-    <label for="node-input-public-api"><i class="fa"></i>Public API</label>
-    <select type="text" id="node-input-public-api">
+    <label for="node-input-typeapi"><i class="fa"></i>API Type</label>
+    <select type="text" id="node-input-typeapi">
+        <option value="public">Public</option>
+        <option value="private">Private</option>
     </select>
   </div>
 
   <div class="form-row node-input-public-api-custom" style="display: none;">
-    <label for="node-input-private-api"><i class="fa"></i>Private API</label>
-    <select type="text" id="node-input-private-api">
+    <label for="node-input-customapi"><i class="fa"></i>API Name</label>
+    <select type="text" id="node-input-customapi">
     </select>
   </div>
 
@@ -1460,34 +1462,41 @@
         icon: 'bitcoin-symbol.png',
         oneditprepare: function() {
             var node = this;
+            
+            // recover exchange api from CCXT node package
+            getAPIS = function(exchange, apiType) {
+                $.getJSON( 'apis', { exchange: exchange }, function(result) {
+                    var customApiElement = $("#node-input-customapi");
 
+                    customApiElement.empty();
+                    
+                    if (apiType == 'public') {    
+                        $.each(result.api.public.get, function(index, item) {
+                            customApiElement.append($("<option />").val(index).text(item));
+                        });
+                    } else {
+                        $.each(result.api.private.post, function(index, item) {
+                            customApiElement.append($("<option />").val(index).text(item));
+                        });
+                    }
+                }).error(function(error) {
+                    console.log(error);
+                });                
+            }
+
+            // exchange input event
             $("#node-input-exchange").change(function() {
                 var exchange = $("#node-input-exchange option:selected").val();
-                var api = $("#node-input-api option:selected").val();
+                var api = $("#node-inputapi option:selected").val();
 
                 if (api === "customAPI") {
-                    // recover exchange api from CCXT node package
-                    $.getJSON( 'apiMethods', { exchange: exchange }, function(result) {
-                        var publicApiElement = $("#node-input-public-api");
-                        var privateApiElement = $("#node-input-private-api");
+                    var apiType = $("#node-input-typeapi option:selected").val();
 
-                        publicApiElement.empty();
-                        $.each(result.api.public.get, function(index, item) {
-                            publicApiElement.append($("<option />").val(index).text(item));
-                        });
-
-                        privateApiElement.empty();
-                        $.each(result.api.private.post, function(index, item) {
-                            privateApiElement.append($("<option />").val(index).text(item));
-                        });
-
-                        console.log(result);
-                    }).error(function(error) {
-                        console.log(error);
-                    });
-                }
+                    getAPIS(exchange, apiType);
+                }                                   
             });
 
+            // exchange API event
             $("#node-input-api").change(function() {
                 var exchange = $("#node-input-exchange option:selected").val();
                 var api = $("#node-input-api option:selected").val();
@@ -1542,25 +1551,9 @@
                     $(".node-input-public-api-fetch-trades").show();
                     $(".node-input-public-api-custom").hide();
                 } else if (api === "customAPI") {
-                    // recover exchange api from CCXT node package
-                    $.getJSON( 'apiMethods', { exchange: exchange }, function(result) {
-                        var publicApiElement = $("#node-input-public-api");
-                        var privateApiElement = $("#node-input-private-api");
+                    var apiType = $("#node-input-typeapi option:selected").val();
 
-                        publicApiElement.empty();
-                        $.each(result.api.public.get, function(index, item) {
-                            publicApiElement.append($("<option />").val(index).text(item));
-                        });
-
-                        privateApiElement.empty();
-                        $.each(result.api.private.post, function(index, item) {
-                            privateApiElement.append($("<option />").val(index).text(item));
-                        });
-
-                        //console.log(result);
-                    }).error(function(error) {
-                        console.log(error);
-                    });
+                    getAPIS(exchange, apiType);
 
                     $(".node-input-public-api-load-markets").hide();
                     $(".node-input-public-api-order-book").hide();
@@ -1576,6 +1569,14 @@
                     $(".node-input-public-api-fetch-trades").hide();
                     $(".node-input-public-api-custom").hide();
                 }
+            });
+
+            // exchange API Type event
+            $("#node-input-typeapi").change(function() {
+                var exchange = $("#node-input-exchange option:selected").val();
+                var apiType = $("#node-input-typeapi option:selected").val();
+
+                getAPIS(exchange, apiType);
             });
         }
     });

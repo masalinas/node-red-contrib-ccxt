@@ -7,19 +7,20 @@ module.exports = function(RED) {
     const ccxt = require('ccxt');
     const moment = require('moment');
 
-    // load RED settings
+    // load RED app server and settings
     var app = RED.httpNode;
     var settings = RED.settings;
 
+    // configure image static folder
     app.use('/', serveStatic(path.join(__dirname, "images")));
 
-    // ccxt: API
+    // node implementation
     function CcxtApi(config) {
         RED.nodes.createNode(this, config);
 
         var node = this;
 
-        // configure api methods
+        // bind apiMethods
         if (RED.settings.httpNodeRoot !== false) {
             node.errorHandler = function(err, req, res, next) {
                 node.warn(err);
@@ -41,7 +42,7 @@ module.exports = function(RED) {
             }               
         }
 
-        app.get('/apiMethods', node.corsHandler, node.callback, node.errorHandler);
+        app.get('/apis', node.corsHandler, node.callback, node.errorHandler);
 
         // execute ccxt API
         node.on('input', function (msg) {
