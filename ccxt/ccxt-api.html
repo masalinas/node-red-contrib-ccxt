@@ -210,16 +210,16 @@
 
   <!-- load Custom API Methods -->
   <div class="form-row node-input-public-api-custom" style="display: none;">
-    <label for="node-input-typeapi"><i class="fa"></i>API Type</label>
-    <select type="text" id="node-input-typeapi">
+    <label for="node-input-apitype"><i class="fa"></i>API Type</label>
+    <select type="text" id="node-input-apitype">
         <option value="public">Public</option>
         <option value="private">Private</option>
     </select>
   </div>
 
   <div class="form-row node-input-public-api-custom" style="display: none;">
-    <label for="node-input-customapi"><i class="fa"></i>API Name</label>
-    <select type="text" id="node-input-customapi">
+    <label for="node-input-apicustom"><i class="fa"></i>API Name</label>
+    <select type="text" id="node-input-apicustom">
     </select>
   </div>
 
@@ -1466,7 +1466,7 @@
             // recover exchange api from CCXT node package
             getAPIS = function(exchange, apiType) {
                 $.getJSON( 'apis', { exchange: exchange }, function(result) {
-                    var customApiElement = $("#node-input-customapi");
+                    var customApiElement = $("#node-input-apicustom");
 
                     customApiElement.empty();
                     
@@ -1487,10 +1487,10 @@
             // exchange input event
             $("#node-input-exchange").change(function() {
                 var exchange = $("#node-input-exchange option:selected").val();
-                var api = $("#node-inputapi option:selected").val();
+                var api = $("#node-input-api option:selected").val();
 
                 if (api === "customAPI") {
-                    var apiType = $("#node-input-typeapi option:selected").val();
+                    var apiType = $("#node-input-apitype option:selected").val();
 
                     getAPIS(exchange, apiType);
                 }                                   
@@ -1551,7 +1551,7 @@
                     $(".node-input-public-api-fetch-trades").show();
                     $(".node-input-public-api-custom").hide();
                 } else if (api === "customAPI") {
-                    var apiType = $("#node-input-typeapi option:selected").val();
+                    var apiType = $("#node-input-apitype option:selected").val();
 
                     getAPIS(exchange, apiType);
 
@@ -1572,9 +1572,9 @@
             });
 
             // exchange API Type event
-            $("#node-input-typeapi").change(function() {
+            $("#node-input-apitype").change(function() {
                 var exchange = $("#node-input-exchange option:selected").val();
-                var apiType = $("#node-input-typeapi option:selected").val();
+                var apiType = $("#node-input-apitype option:selected").val();
 
                 getAPIS(exchange, apiType);
             });
