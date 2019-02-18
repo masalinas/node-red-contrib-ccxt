@@ -28,14 +28,24 @@ module.exports = function(RED) {
                 res.send(500);
             };
 
-            node.callback = function(req, res) {
+            node.callbackExchanges = function(req, res) {
+                // connect to exchange                
+
+                // return api exchange
+                res.setHeader('Content-Type', 'application/json');
+
+                // get all eschanges
+                res.send(JSON.stringify({ exchanges: ccxt.exchanges }));
+            }
+
+            node.callbackApis = function(req, res) {
                 // connect to exchange
                 var exchange = new ccxt[req.query.exchange] ();
 
                 // return api exchange
                 res.setHeader('Content-Type', 'application/json');
 
-                // 
+                // get all apis from exchange
                 res.send(JSON.stringify({ api: exchange.api }));
             } 
 
@@ -44,7 +54,8 @@ module.exports = function(RED) {
             }               
         }
 
-        app.get('/apis', node.corsHandler, node.callback, node.errorHandler);
+        app.get('/exchanges', node.corsHandler, node.callbackExchanges, node.errorHandler);
+        app.get('/apis', node.corsHandler, node.callbackApis, node.errorHandler);        
 
         // execute ccxt API
         node.on('input', function (msg) {

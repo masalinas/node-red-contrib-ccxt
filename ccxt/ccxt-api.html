@@ -23,6 +23,7 @@
       <option value="bitfinex">Bitfinex</option>
       <option value="bitfinex2">Bitfinex v2</option>
       <option value="bitflyer">bitFlyer</option>
+      <option value="bitforex">Bitforex</option>      
       <option value="bithumb">Bithumb</option>
       <option value="bitibu">Bitibu</option>
       <option value="bitkk">bitkk</option>
@@ -106,6 +107,7 @@
       <option value="lakebtc">LakeBTC</option>
       <option value="lbank">LBank</option>
       <option value="liqui">Liqui</option>
+      <option value="liquid">Liquid</option>
       <option value="livecoin">LiveCoin</option>
       <option value="luno">luno</option>
       <option value="lykke">Lykke</option>
@@ -1495,6 +1497,19 @@
                 typeField: $("#node-input-payloadType"),
                 types:['json']
             });
+
+            // recover exchange api from CCXT node package
+            getExchanges = function() {
+                $.getJSON( 'exchanges', function(result) {
+                    var exchangesElement = $("node-input-exchange");
+
+                    exchangesElement.empty();
+
+                    $.each(result.exchanges, function(index, item) {
+                        customApiElement.append($("<option />").val(item).text(item));
+                    });
+                });
+            }
 
             // recover exchange api from CCXT node package
             getAPIS = function(exchange, apiType) {
