@@ -223,6 +223,12 @@
     </select>
   </div>
 
+  <div class="form-row node-input-public-api-custom" style="display: none;">
+    <label for="node-input-apipayload"><i class="fa"></i>API Payload</label>
+    <input type="json" id="node-input-apipayload" style="width:70%>        
+    <input type="hidden" id="node-input-payloadType">
+  </div>
+
   <!-- private API keys -->
   <div class="form-row">
     <label for="node-input-apikey"><i class="fa"></i>ApiKey</label>
@@ -1450,6 +1456,8 @@
             fetchtradessymbol: {value: ''},
             apitype : {value: 'Public'},
             apicustom : {value: ''},
+            apipayload: {value:"", validate: RED.validators.typedInput("payloadType")},
+            payloadType: {value:"json"}
         },
         credentials: {
             apikey: {value: ''},
@@ -1465,7 +1473,11 @@
         oneditprepare: function() {
             var node = this;
             
-            //console.log('inside oneditprepare with apicustom: ' + node._config.apicustom);
+            $("#node-input-apipayload").typedInput({
+                default: 'json',
+                typeField: $("#node-input-payloadType"),
+                types:['json']
+            });
 
             // recover exchange api from CCXT node package
             getAPIS = function(exchange, apiType) {
@@ -1477,13 +1489,13 @@
                     if (apiType == 'public') {    
                         if (result.api.public !== undefined) {                       
                             $.each(result.api.public.get, function(index, item) {
-                                customApiElement.append($("<option />").val(index).text(item));
+                                customApiElement.append($("<option />").val(item).text(item));
                             });
                         }
                     } else {
                         if (result.api.private !== undefined) {                       
                             $.each(result.api.private.post, function(index, item) {
-                                customApiElement.append($("<option />").val(index).text(item));
+                                customApiElement.append($("<option />").val(item).text(item));
                             });
                         }
                     }

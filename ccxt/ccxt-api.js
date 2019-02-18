@@ -34,6 +34,8 @@ module.exports = function(RED) {
 
                 // return api exchange
                 res.setHeader('Content-Type', 'application/json');
+
+                // 
                 res.send(JSON.stringify({ api: exchange.api }));
             } 
 
@@ -98,9 +100,15 @@ module.exports = function(RED) {
                         //result = await exchange.privatePostBalance(); 
                         //result = await exchange.publicGetAssets();
                         //result = await exchange.publicGetTicker({book: 'btc_mxn'}) // for bitso
+                        //result = await exchange.publicGetTicker({pair: 'BTCMXN'}) // for bitso
                         //result = await exchange.publicGetTicker({pair: 'BTCEUR, BCHEUR'}); // for kraken
                         //result = await exchange['publicGetTicker']({pair: 'BTCEUR, BCHEUR'}); // for kraken 
-                        result = await exchange['publicGetOHLC']({pair: 'BTCEUR', interval: 30, since: 1550422800}); // for kraken                   
+                        //result = await exchange['publicGetOHLC']({pair: 'BTCEUR', interval: 30, since: 1550422800}); // for kraken                   
+
+                        if (config.apitype == 'public')
+                            result = await exchange['public_get_' + config.apicustom.toLowerCase()](JSON.parse(config.apipayload));                            
+                        else
+                            result = await exchange['private_post_' + config.apicustom.toLowerCase()](config.apipayload);
                     } else {
                         node.status({fill:"yellow", shape: "ring", text: "CCXT API not exist"});
                         node.warning("CCXT API not exist");
