@@ -95,16 +95,6 @@ module.exports = function(RED) {
                     } else if (api === "fetchTrades") {
                         result = await exchange.fetchTrades(fetchtradessymbol);
                     } else if (api === "customAPI") {
-                        // test Kraken API
-                        //console.log (new ccxt.kraken ());
-                        //result = await exchange.privatePostBalance(); 
-                        //result = await exchange.publicGetAssets();
-                        //result = await exchange.publicGetTicker({book: 'btc_mxn'}) // for bitso
-                        //result = await exchange.publicGetTicker({pair: 'BTCMXN'}) // for bitso
-                        //result = await exchange.publicGetTicker({pair: 'BTCEUR, BCHEUR'}); // for kraken
-                        //result = await exchange['publicGetTicker']({pair: 'BTCEUR, BCHEUR'}); // for kraken 
-                        //result = await exchange['publicGetOHLC']({pair: 'BTCEUR', interval: 30, since: 1550422800}); // for kraken                   
-
                         if (config.apitype == 'public')
                             result = await exchange['public_get_' + config.apicustom.toLowerCase()](JSON.parse(config.apipayload));                            
                         else
