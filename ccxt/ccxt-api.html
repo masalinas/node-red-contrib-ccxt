@@ -1447,7 +1447,9 @@
             fetchohlcvtimeframe: {value: '1m'},
             fetchohlcvsince: {value: undefined},
             fetchohlcvlimit: {value: undefined},
-            fetchtradessymbol: {value: ''}
+            fetchtradessymbol: {value: ''},
+            apitype : {value: 'Public'},
+            apicustom : {value: ''},
         },
         credentials: {
             apikey: {value: ''},
@@ -1463,6 +1465,8 @@
         oneditprepare: function() {
             var node = this;
             
+            //console.log('inside oneditprepare with apicustom: ' + node._config.apicustom);
+
             // recover exchange api from CCXT node package
             getAPIS = function(exchange, apiType) {
                 $.getJSON( 'apis', { exchange: exchange }, function(result) {
@@ -1471,21 +1475,28 @@
                     customApiElement.empty();
                     
                     if (apiType == 'public') {    
-                        $.each(result.api.public.get, function(index, item) {
-                            customApiElement.append($("<option />").val(index).text(item));
-                        });
+                        if (result.api.public !== undefined) {                       
+                            $.each(result.api.public.get, function(index, item) {
+                                customApiElement.append($("<option />").val(index).text(item));
+                            });
+                        }
                     } else {
-                        $.each(result.api.private.post, function(index, item) {
-                            customApiElement.append($("<option />").val(index).text(item));
-                        });
+                        if (result.api.private !== undefined) {                       
+                            $.each(result.api.private.post, function(index, item) {
+                                customApiElement.append($("<option />").val(index).text(item));
+                            });
+                        }
                     }
+                    
+                    // set actual value
+                    customApiElement.val(node.apicustom);                                                
                 }).error(function(error) {
                     console.log(error);
                 });                
             }
 
             // exchange input event
-            $("#node-input-exchange").change(function() {
+            $("#node-input-exchange").change(function() {    
                 var exchange = $("#node-input-exchange option:selected").val();
                 var api = $("#node-input-api option:selected").val();
 
@@ -1493,7 +1504,7 @@
                     var apiType = $("#node-input-apitype option:selected").val();
 
                     getAPIS(exchange, apiType);
-                }                                   
+                }
             });
 
             // exchange API event
@@ -1576,7 +1587,7 @@
                 var exchange = $("#node-input-exchange option:selected").val();
                 var apiType = $("#node-input-apitype option:selected").val();
 
-                getAPIS(exchange, apiType);
+                getAPIS(exchange, apiType);             
             });
         }
     });
