@@ -5,7 +5,9 @@
   "keywords": [
     "ccxt",
     "node-red",
-    "cryptocurrency"
+    "bitcoin",
+    "cryptocurrency",
+    "exchanges"
   ],
   "author": "Miguel Salinas Gancedo",
   "license": "Apache License, Version 2.0",
