@@ -2,7 +2,7 @@
 A Node-RED node implemented by CCXT. 
 
 ## Description
-Now this node package supports the API for all **(133 exchanges)** Crypto Exchanges in the world from [CCXT](https://github.com/ccxt/ccxt) node-RED package. More than 1500 APIS implemented to be used.
+Now this node package supports the API for all **(133 Exchanges)** Crypto Exchanges in the world from [CCXT](https://github.com/ccxt/ccxt) node-RED package. More than **1500 APIS** implemented to be used.
 
 For the latest updates see the [CHANGELOG.md](https://github.com/masalinas/node-red-contrib-ccxt/blob/master/CHANGELOG.md)
 
@@ -157,7 +157,7 @@ npm install node-red-contrib-ccxt --save
 * **API Name**: only for **Custom API**. It represents the name of the API selected. Consult the help of the Exchange to know if is necesary secrets to access to it.
 * **API payload**: only for **Custom API**. Some API need a payload to be query. Consult the API help of the Exchange.
 
-** Some examples
+## Some examples
 
 * List Bitcoin Balance in my wallet from Kraken exchange. This API is private so we need to register in the exchange and create the secrets (APIkey and Secret)
 
