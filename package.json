@@ -1,13 +1,13 @@
 {
   "name": "node-red-contrib-ccxt",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "node-red ccxt",
   "keywords": [
     "node-red",
     "ccxt",
     "bitcoin",
     "cryptocurrency",
-    "exchanges"
+    "trading"
   ],
   "author": "Miguel Salinas Gancedo",
   "license": "Apache License, Version 2.0",
