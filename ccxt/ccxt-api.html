@@ -212,6 +212,11 @@
 
   <!-- load Custom API Methods -->
   <div class="form-row node-input-public-api-custom" style="display: none;">
+    <label for="node-input-apisecrets">Secrets</label>
+    <input type="text" id="node-input-apisecrets">
+  </div>
+
+  <div class="form-row node-input-public-api-custom" style="display: none;">
     <label for="node-input-apitype"><i class="fa"></i>API Type</label>
     <select type="text" id="node-input-apitype">
     </select>
@@ -227,17 +232,6 @@
     <label for="node-input-apipayload"><i class="fa"></i>API Payload</label>
     <input type="json" id="node-input-apipayload" style="width:70%>        
     <input type="hidden" id="node-input-payloadType">
-  </div>
-
-  <!-- private API keys -->
-  <div class="form-row">
-    <label for="node-input-apikey"><i class="fa"></i>ApiKey</label>
-    <input type="text" id="node-input-apikey" placeholder="Broker ApiKey">
-  </div>
-
-  <div class="form-row">
-    <label for="node-input-secret"><i class="fa"></i>Secret ApiKey</label>
-    <input type="text" id="node-input-secret" placeholder="Broker Secret ApiKey">
   </div>
 </script>
 
@@ -1507,22 +1501,19 @@
             fetchohlcvsince: {value: undefined},
             fetchohlcvlimit: {value: undefined},
             fetchtradessymbol: {value: ''},
-            apitype : {value: ''},
-            apicustom : {value: ''},
-            apipayload: {value:"", validate: RED.validators.typedInput("payloadType")},
-            payloadType: {value:"json"}
-        },
-        credentials: {
-            apikey: {value: ''},
-            secret: {value: ''}
+            apisecrets: {type: 'ccxt-exchange', required: false},
+            apitype : {value: '', required: true},
+            apicustom : {value: '', required: true},
+            apipayload: {value:'', required: false, validate: RED.validators.typedInput('payloadType')},
+            payloadType: {value: 'json'}
         },
         outputs: 1,
         inputs: 1,
+        color: '#D8BFD8',
+        icon: 'bitcoin-symbol.png',
         label: function() {
             return this.name || "ccxt API";
         },
-        color: '#D8BFD8',
-        icon: 'bitcoin-symbol.png',
         oneditprepare: function() {
             var node = this;
             
@@ -1690,6 +1681,43 @@
                 if (api === "customAPI" && apitype !== undefined) 
                     getAPIS(exchange, apitype);                                
             });
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="ccxt-exchange">
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="fa fa-tag"></i>Name</label>
+        <input type="text" id="node-config-input-name" placeholder="Enter Exchange Name">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-apikey"><i class="fa"></i>ApiKey</label>
+        <input type="text" id="node-config-input-apikey" placeholder="Enter Exchange ApiKey">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-secret"><i class="fa"></i>Secret</label>
+        <input type="text" id="node-config-input-secret" placeholder="Enter Exchange Secret">
+    </div>    
+</script>
+
+<script type="text/x-red" data-help-name="ccxt-exchange">
+    <p>Configuration for a connection to an CCXT exchange.</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('ccxt-exchange', {
+        category: 'config',
+        defaults: {
+            name: {value: ''}
+        },
+        credentials: {
+            apikey: {value: ''},
+            secret: {value: ''}
+        },
+        label: function() {
+            if (this.name) {
+                return this.name;
+            }
         }
     });
 </script>

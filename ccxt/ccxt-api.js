@@ -76,14 +76,21 @@ module.exports = function(RED) {
                     // connect to exchange selected
                     var exchange = undefined;
                     
-                    if (this.credentials.apikey)
+                    if (config.api == 'customAPI') {
+                        var secret = RED.nodes.getNode(config.apisecrets);
+
+                        if (secret == undefined) {
+                            node.error('Not exist any Exchange credential configured', msg);                            
+                            return;
+                        }
+
                         exchange = new ccxt[config.exchange] (
                             {
-                                apiKey: this.credentials.apikey,
-                                secret: this.credentials.secret,
-                                nonce: () => new Date().getTime()
+                                apiKey: secret.credentials.apikey,
+                                secret: secret.credentials.secret
                             }
                         );
+                    }
                     else
                         exchange = new ccxt[config.exchange] ();                    
 
@@ -145,7 +152,13 @@ module.exports = function(RED) {
         });
     }
 
-    RED.nodes.registerType('ccxt-api', CcxtApi, {
+    RED.nodes.registerType('ccxt-api', CcxtApi);
+
+    function CcxtExchange(config) {
+        RED.nodes.createNode(this, config);
+    }
+
+    RED.nodes.registerType("ccxt-exchange", CcxtExchange, {
         credentials: {
             apikey: {type: "text"},
             secret: {type: "text"}
