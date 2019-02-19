@@ -2,7 +2,7 @@
 A Node-RED node implemented by CCXT. 
 
 ## Description
-Now this node package supports the API for all **(133 exchanges)** Crypto Exchanges in the world from [CCXT](https://github.com/ccxt/ccxt) node-RED package
+Now this node package supports the API for all **(133 exchanges)** Crypto Exchanges in the world from [CCXT](https://github.com/ccxt/ccxt) node-RED package. More than 1500 APIS implemented to be used.
 
 For the latest updates see the [CHANGELOG.md](https://github.com/masalinas/node-red-contrib-ccxt/blob/master/CHANGELOG.md)
 
