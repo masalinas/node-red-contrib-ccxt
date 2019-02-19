@@ -151,11 +151,11 @@ npm install node-red-contrib-ccxt --save
 ## CCXT node-RED Configuration
 
 * **Exchange**: Exchange name
-* **API**: All public APIs normally are implemented by all exchanges. These API do not need to register in the Exchange. If select Custom API we will have access to all API to the Exchange. Some of them are public and other are private. The private API need to register in the Exchange and create secrets for the API to be accessed. Follow the help of the Exchange to create it.
-* **Secrets**: only for Custom APIs. Permit create the secrets to access private API to the Exchange.
-* **API Type**: only for Custom APIs. It represents the list of all API types offered by the Exchange.
-* **API Name**: only for Custom APIs. It represents the name of the API selected. Consult the help of the Exchange to know if is necesary secrets to access to it.
-* **API payload**: only for Custom APIs. Some API need a payload to be query. Consult the API help of the Exchange.
+* **API**: All public APIs normally are implemented by all exchanges. These API do not need to register in the Exchange. If select **Custom API** we will have access to all API to the Exchange. Some of them are public and other are private. The private API need to register in the Exchange and create secrets for the API to be accessed. Follow the help of the Exchange to create it.
+* **Secrets**: only for **Custom API**. Permit create the secrets to access private API to the Exchange.
+* **API Type**: only for **Custom API**. It represents the list of all API types offered by the Exchange.
+* **API Name**: only for **Custom API**. It represents the name of the API selected. Consult the help of the Exchange to know if is necesary secrets to access to it.
+* **API payload**: only for **Custom API**. Some API need a payload to be query. Consult the API help of the Exchange.
 
 ** Some examples
 
