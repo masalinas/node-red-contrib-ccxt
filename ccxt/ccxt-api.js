@@ -81,6 +81,7 @@ module.exports = function(RED) {
                             {
                                 apiKey: this.credentials.apikey,
                                 secret: this.credentials.secret,
+                                nonce: () => new Date().getTime()
                             }
                         );
                     else
@@ -118,10 +119,7 @@ module.exports = function(RED) {
                     } else if (api === "fetchTrades") {
                         result = await exchange.fetchTrades(fetchtradessymbol);
                     } else if (api === "customAPI") {
-                        if (config.apitype == 'public')
-                            result = await exchange['public_get_' + config.apicustom.toLowerCase()](JSON.parse(config.apipayload));                            
-                        else
-                            result = await exchange['private_post_' + config.apicustom.toLowerCase()](config.apipayload);
+                        result = await exchange[config.apitype + '_' + config.apicustom.toLowerCase()](config.apipayload);
                     } else {
                         node.status({fill:"yellow", shape: "ring", text: "CCXT API not exist"});
                         node.warning("CCXT API not exist");
