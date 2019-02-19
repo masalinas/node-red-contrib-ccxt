@@ -29,24 +29,35 @@ module.exports = function(RED) {
             };
 
             node.callbackExchanges = function(req, res) {
-                // connect to exchange                
+                // get exchange collection                
+                var exchanges = ccxt.exchanges;
 
-                // return api exchange
+                // get all exchanges
                 res.setHeader('Content-Type', 'application/json');
-
-                // get all eschanges
-                res.send(JSON.stringify({ exchanges: ccxt.exchanges }));
+                res.send(JSON.stringify({ exchange: exchanges }));
             }
 
-            node.callbackApis = function(req, res) {
-                // connect to exchange
-                var exchange = new ccxt[req.query.exchange] ();
+            node.callbackApiTypes = function(req, res) {
+                var exchange = req.query.exchange;
 
-                // return api exchange
+                // create to exchange object
+                var exchange = new ccxt[exchange] ();
+
+                // get all api types by exchange
                 res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({ type: Object.keys(exchange.api) }));
+            } 
 
-                // get all apis from exchange
-                res.send(JSON.stringify({ api: exchange.api }));
+            node.callbackApis = function(req, res) {
+                var exchange = req.query.exchange;
+                var type = req.query.apitype;
+
+                // create to exchange object
+                var exchange = new ccxt[exchange] ();
+
+                // get all apis from exchange and api type
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({ api: exchange.api[type] }));
             } 
 
             node.corsHandler = function(req, res, next) { 
@@ -55,6 +66,7 @@ module.exports = function(RED) {
         }
 
         app.get('/exchanges', node.corsHandler, node.callbackExchanges, node.errorHandler);
+        app.get('/apitypes', node.corsHandler, node.callbackApiTypes, node.errorHandler);
         app.get('/apis', node.corsHandler, node.callbackApis, node.errorHandler);        
 
         // execute ccxt API

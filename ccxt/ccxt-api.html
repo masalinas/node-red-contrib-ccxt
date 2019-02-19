@@ -214,8 +214,6 @@
   <div class="form-row node-input-public-api-custom" style="display: none;">
     <label for="node-input-apitype"><i class="fa"></i>API Type</label>
     <select type="text" id="node-input-apitype">
-        <option value="public">Public</option>
-        <option value="private">Private</option>
     </select>
   </div>
 
@@ -1509,7 +1507,7 @@
             fetchohlcvsince: {value: undefined},
             fetchohlcvlimit: {value: undefined},
             fetchtradessymbol: {value: ''},
-            apitype : {value: 'Public'},
+            apitype : {value: ''},
             apicustom : {value: ''},
             apipayload: {value:"", validate: RED.validators.typedInput("payloadType")},
             payloadType: {value:"json"}
@@ -1534,60 +1532,81 @@
                 types:['json']
             });
 
-            // recover exchange api from CCXT node package
+            // recover Exchanges api from CCXT node package
             getExchanges = function() {
-                $.getJSON( 'exchanges', function(result) {
-                    var exchangesElement = $("node-input-exchange");
+                $.getJSON('exchanges', function(result) {
+                    var exchangeElement = $("node-input-exchange");
 
-                    exchangesElement.empty();
+                    exchangeElement.empty();
 
-                    $.each(result.exchanges, function(index, item) {
-                        customApiElement.append($("<option />").val(item).text(item));
+                    $.each(result.exchange, function(index, item) {
+                        exchangeElement.append($("<option />").val(item).text(item));
                     });
                 });
             }
 
-            // recover exchange api from CCXT node package
-            getAPIS = function(exchange, apiType) {
-                $.getJSON( 'apis', { exchange: exchange }, function(result) {
-                    var customApiElement = $("#node-input-apicustom");
+            // recover API types from CCXT node package
+            getAPITypes = function(exchange) {
+                var apitype = $("#node-input-apitype option:selected").val();            
 
-                    customApiElement.empty();
-                    
-                    if (apiType == 'public') {    
-                        if (result.api.public !== undefined) {                       
-                            $.each(result.api.public.get, function(index, item) {
-                                customApiElement.append($("<option />").val(item).text(item));
-                            });
-                        }
-                    } else {
-                        if (result.api.private !== undefined) {                       
-                            $.each(result.api.private.post, function(index, item) {
-                                customApiElement.append($("<option />").val(item).text(item));
-                            });
-                        }
+                $.getJSON('apitypes', { exchange: exchange }, function(result) {
+                    var apiTypeElement = $("#node-input-apitype");
+
+                    apiTypeElement.empty();
+
+                    $.each(result.type, function(index, item) {
+                        apiTypeElement.append($("<option />").val(item).text(item));
+                    });
+
+                    // set actual value
+                    apiTypeElement.val(node.apitype);
+
+                    var type;
+                    if (apitype == undefined) {
+                        if (node.apitype !== undefined)   
+                            type =  node.apitype;
                     }
+                    else 
+                        type = apitype;
+
+                    // fill apis from API Type
+                    if (type !== undefined)
+                        getAPIS(exchange, node.apitype);
+                }).error(function(error) {
+                    console.log(error);
+                });
+            }
+
+            // recover APIs from CCXT node package
+            getAPIS = function(exchange, apiType) {
+                $.getJSON('apis', { exchange: exchange, apitype: apiType}, function(result) {
+                    var apiElement = $("#node-input-apicustom");
+
+                    apiElement.empty();
+                    
+                    $.each(Object.keys(result.api), function(index, verb) {                        
+                        $.each(result.api[verb], function(index, item) {
+                            apiElement.append($("<option />").val(verb + '_' + item).text(verb + '_' + item));
+                        });
+                    });
                     
                     // set actual value
-                    customApiElement.val(node.apicustom);                                                
+                    apiElement.val(node.apicustom);                                                
                 }).error(function(error) {
                     console.log(error);
                 });                
             }
 
-            // exchange input event
+            // Exchange change event
             $("#node-input-exchange").change(function() {    
-                var exchange = $("#node-input-exchange option:selected").val();
                 var api = $("#node-input-api option:selected").val();
+                var exchange = $("#node-input-exchange option:selected").val();                
 
-                if (api === "customAPI") {
-                    var apiType = $("#node-input-apitype option:selected").val();
-
-                    getAPIS(exchange, apiType);
-                }
+                if (api === "customAPI")
+                    getAPITypes(exchange);                
             });
 
-            // exchange API event
+            // API change event
             $("#node-input-api").change(function() {
                 var exchange = $("#node-input-exchange option:selected").val();
                 var api = $("#node-input-api option:selected").val();
@@ -1642,9 +1661,8 @@
                     $(".node-input-public-api-fetch-trades").show();
                     $(".node-input-public-api-custom").hide();
                 } else if (api === "customAPI") {
-                    var apiType = $("#node-input-apitype option:selected").val();
-
-                    getAPIS(exchange, apiType);
+                    // get APIS Types
+                    getAPITypes(exchange);
 
                     $(".node-input-public-api-load-markets").hide();
                     $(".node-input-public-api-order-book").hide();
@@ -1661,13 +1679,16 @@
                     $(".node-input-public-api-custom").hide();
                 }
             });
-
-            // exchange API Type event
-            $("#node-input-apitype").change(function() {
-                var exchange = $("#node-input-exchange option:selected").val();
-                var apiType = $("#node-input-apitype option:selected").val();
-
-                getAPIS(exchange, apiType);             
+            
+            // API type change event
+            $("#node-input-apitype").change(function() { 
+                var api = $("#node-input-api option:selected").val();
+                var exchange = $("#node-input-exchange option:selected").val();    
+                var apitype = $("#node-input-apitype option:selected").val();            
+                
+                // get APIS types
+                if (api === "customAPI" && apitype !== undefined) 
+                    getAPIS(exchange, apitype);                                
             });
         }
     });
